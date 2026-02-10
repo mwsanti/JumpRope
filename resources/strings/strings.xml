@@ -1,0 +1,38 @@
+<!--
+    strings.xml
+    Jump Rope App — String Resources
+
+    All user-visible strings for the Jump Rope app.
+    Supports English (eng) locale.
+-->
+<strings>
+
+    <!-- App identity -->
+    <string id="AppName">JumpRope</string>
+
+    <!-- Workout status labels -->
+    <string id="Recording">RECORDING</string>
+    <string id="Paused">PAUSED</string>
+    <string id="Stopped">STOPPED</string>
+
+    <!-- Action labels -->
+    <string id="Save">Save</string>
+    <string id="Discard">Discard</string>
+
+    <!-- Main workout screen labels -->
+    <string id="Jumps">Jumps</string>
+    <string id="Time">Time</string>
+    <string id="JPM">JPM</string>
+    <string id="HeartRate">HR</string>
+
+    <!-- Summary screen labels -->
+    <string id="Summary">Summary</string>
+    <string id="AvgJPM">Avg JPM</string>
+    <string id="PeakJPM">Peak JPM</string>
+    <string id="Calories">Calories</string>
+    <string id="AvgHR">Avg HR</string>
+    <string id="MaxHR">Max HR</string>
+    <string id="TotalJumps">Total Jumps</string>
+    <string id="Duration">Duration</string>
+
+</strings>

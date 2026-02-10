@@ -1,0 +1,22 @@
+# Connect IQ build output
+bin/
+build/
+
+# IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# Developer key (private - never commit)
+developer_key.der
+developer_key.pem
+*.der
+*.pem
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Garmin SDK
+.connectiq/

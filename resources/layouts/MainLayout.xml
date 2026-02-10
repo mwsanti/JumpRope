@@ -1,0 +1,90 @@
+<!--
+    MainLayout.xml
+    Jump Rope App — Main Workout Screen Layout
+
+    Layout for the primary workout display on the Forerunner 235 (215x180 semi-round).
+    Shows: status indicator, jump count, timer, jumps-per-minute, and heart rate.
+
+    Element IDs are referenced in MainView.mc via findDrawableById().
+-->
+<layout id="MainLayout">
+
+    <!-- Status indicator (RECORDING / PAUSED) — top center -->
+    <label
+        id="StatusLabel"
+        x="center"
+        y="5"
+        font="Graphics.FONT_TINY"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_GREEN"
+        text="@Strings.Recording" />
+
+    <!-- Jump count label — small label above the big number -->
+    <label
+        id="JumpsLabel"
+        x="center"
+        y="30"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.Jumps" />
+
+    <!-- Jump count value — large centered number (primary metric) -->
+    <label
+        id="JumpCount"
+        x="center"
+        y="45"
+        font="Graphics.FONT_NUMBER_HOT"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_WHITE"
+        text="0" />
+
+    <!-- Timer display (MM:SS) — below jump count -->
+    <label
+        id="TimerLabel"
+        x="center"
+        y="115"
+        font="Graphics.FONT_MEDIUM"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_WHITE"
+        text="00:00" />
+
+    <!-- Jumps per minute — bottom left area -->
+    <label
+        id="JPMLabel"
+        x="55"
+        y="140"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.JPM" />
+
+    <label
+        id="JPMValue"
+        x="55"
+        y="155"
+        font="Graphics.FONT_SMALL"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_WHITE"
+        text="0" />
+
+    <!-- Heart rate — bottom right area -->
+    <label
+        id="HRLabel"
+        x="160"
+        y="140"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.HeartRate" />
+
+    <label
+        id="HRValue"
+        x="160"
+        y="155"
+        font="Graphics.FONT_SMALL"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_RED"
+        text="--" />
+
+</layout>

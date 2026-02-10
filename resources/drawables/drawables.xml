@@ -1,0 +1,12 @@
+<!--
+    drawables.xml
+    Jump Rope App — Drawable Resources
+
+    Defines the launcher icon drawable for the app.
+    The launcher icon is referenced in manifest.xml as @Drawables.LauncherIcon.
+    FR235 expects an icon image; a placeholder PNG should be replaced with
+    a proper 80x80 PNG-8 icon before publishing.
+-->
+<drawables>
+    <bitmap id="LauncherIcon" filename="launcher_icon.png" />
+</drawables>

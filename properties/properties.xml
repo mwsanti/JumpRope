@@ -1,0 +1,31 @@
+<!--
+    properties.xml
+    Jump Rope App — Configurable Properties
+
+    Tunable parameters for jump detection algorithm and calorie calculation.
+    These can be adjusted via Garmin Connect Mobile or Garmin Express settings.
+-->
+<properties>
+
+    <!-- Takeoff detection threshold in milliG (>1.8G triggers airborne state) -->
+    <property id="jumpThreshold" type="number">1800</property>
+
+    <!-- Landing detection threshold in milliG (<0.5G triggers ground state) -->
+    <property id="landingThreshold" type="number">500</property>
+
+    <!-- Minimum milliseconds between jump detections (prevents double-counting) -->
+    <property id="debounceMs" type="number">150</property>
+
+    <!-- Accelerometer polling rate in Hz -->
+    <property id="sampleRate" type="number">25</property>
+
+    <!-- User weight in kg for calorie estimation -->
+    <property id="userWeightKg" type="number">70</property>
+
+    <!-- Jumps between vibration milestone alerts (0 = disabled, max 1000) -->
+    <property id="milestoneInterval" type="number">100</property>
+
+    <!-- Countdown timer duration in seconds (0 = count up mode, max 3600) -->
+    <property id="countdownSeconds" type="number">0</property>
+
+</properties>

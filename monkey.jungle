@@ -1,0 +1,15 @@
+#
+# monkey.jungle
+# Jump Rope App — Build configuration
+#
+# Standard Connect IQ build config for Forerunner 235.
+# Maps the project manifest, source, and resource paths.
+#
+
+project.manifest = manifest.xml
+
+# Base source path — all .mc files
+base.sourcePath = source
+
+# Base resource path — layouts, strings, drawables, properties
+base.resourcePath = resources;properties

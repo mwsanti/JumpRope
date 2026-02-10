@@ -1,0 +1,166 @@
+<!--
+    SummaryLayout.xml
+    Jump Rope App — Post-Workout Summary Screen Layout
+
+    Layout for the summary display on the Forerunner 235 (215x180 semi-round).
+    Shows workout statistics in a label:value pair list format.
+    User can Save or Discard the recorded session from this screen.
+
+    Element IDs are referenced in SummaryView.mc via findDrawableById().
+-->
+<layout id="SummaryLayout">
+
+    <!-- Summary header -->
+    <label
+        id="SummaryTitle"
+        x="center"
+        y="2"
+        font="Graphics.FONT_SMALL"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_BLUE"
+        text="@Strings.Summary" />
+
+    <!-- Row 1: Total Jumps -->
+    <label
+        id="TotalJumpsLabel"
+        x="10"
+        y="25"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_LEFT"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.TotalJumps" />
+
+    <label
+        id="TotalJumpsValue"
+        x="195"
+        y="25"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        color="Graphics.COLOR_WHITE"
+        text="0" />
+
+    <!-- Row 2: Duration -->
+    <label
+        id="DurationLabel"
+        x="10"
+        y="45"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_LEFT"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.Duration" />
+
+    <label
+        id="DurationValue"
+        x="195"
+        y="45"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        color="Graphics.COLOR_WHITE"
+        text="00:00" />
+
+    <!-- Row 3: Avg JPM -->
+    <label
+        id="AvgJPMLabel"
+        x="10"
+        y="65"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_LEFT"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.AvgJPM" />
+
+    <label
+        id="AvgJPMValue"
+        x="195"
+        y="65"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        color="Graphics.COLOR_WHITE"
+        text="0" />
+
+    <!-- Row 4: Peak JPM -->
+    <label
+        id="PeakJPMLabel"
+        x="10"
+        y="85"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_LEFT"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.PeakJPM" />
+
+    <label
+        id="PeakJPMValue"
+        x="195"
+        y="85"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        color="Graphics.COLOR_WHITE"
+        text="0" />
+
+    <!-- Row 5: Calories -->
+    <label
+        id="CaloriesLabel"
+        x="10"
+        y="105"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_LEFT"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.Calories" />
+
+    <label
+        id="CaloriesValue"
+        x="195"
+        y="105"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        color="Graphics.COLOR_WHITE"
+        text="0" />
+
+    <!-- Row 6: Avg HR -->
+    <label
+        id="AvgHRLabel"
+        x="10"
+        y="125"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_LEFT"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.AvgHR" />
+
+    <label
+        id="AvgHRValue"
+        x="195"
+        y="125"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        color="Graphics.COLOR_RED"
+        text="--" />
+
+    <!-- Row 7: Max HR -->
+    <label
+        id="MaxHRLabel"
+        x="10"
+        y="145"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_LEFT"
+        color="Graphics.COLOR_LT_GRAY"
+        text="@Strings.MaxHR" />
+
+    <label
+        id="MaxHRValue"
+        x="195"
+        y="145"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_RIGHT"
+        color="Graphics.COLOR_RED"
+        text="--" />
+
+    <!-- Save/Discard hint at bottom -->
+    <label
+        id="ActionHint"
+        x="center"
+        y="165"
+        font="Graphics.FONT_XTINY"
+        justification="Graphics.TEXT_JUSTIFY_CENTER"
+        color="Graphics.COLOR_DK_GRAY"
+        text="START=Save  BACK=Discard" />
+
+</layout>
