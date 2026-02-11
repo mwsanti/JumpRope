@@ -17,7 +17,9 @@ Counts jumps in real time using the wrist accelerometer, records workouts as FIT
 
 ## Screenshots
 
-*Coming soon — screenshots from the FR235 simulator*
+| Idle | Jumping | Pause Menu | Summary |
+|------|---------|------------|---------|
+| ![Idle](screenshots/01_idle.png) | ![Jumping](screenshots/02_jumping.png) | ![Pause Menu](screenshots/03_pause_menu.png) | ![Summary](screenshots/04_summary.png) |
 
 ## Device Compatibility
 
@@ -54,7 +56,9 @@ JumpRope/
 │   ├── SessionManager.mc           # FIT recording, calories, HR stats
 │   ├── MainView.mc                 # Workout screen display + lifecycle
 │   ├── MainDelegate.mc             # Button handling state machine
-│   ├── SummaryView.mc              # Post-workout stats display
+│   ├── PauseMenuView.mc            # Pause menu (Resume/Save/Discard)
+│   ├── PauseMenuDelegate.mc        # Pause menu input handling
+│   ├── SummaryView.mc              # Post-workout stats display (paginated)
 │   ├── SummaryDelegate.mc          # Save/discard session handling
 │   └── JumpRopeApp.mc              # App entry point
 ├── resources/
@@ -109,10 +113,11 @@ See [BUILD_AND_TEST.md](BUILD_AND_TEST.md) for the full guide including threshol
 
 ## Controls
 
-| Button | Idle | Recording | Paused | Summary |
-|--------|------|-----------|--------|---------|
-| **START** | Begin workout | Pause | Resume | Save session |
-| **BACK** | Exit app | Stop workout | Stop workout | Discard session |
+| Button | Idle | Recording | Pause Menu | Summary |
+|--------|------|-----------|------------|---------|
+| **START** | Begin workout | Pause → menu | Select option | Save session |
+| **UP/DOWN** | — | — | Navigate options | Cycle pages |
+| **BACK** | Exit app | — | Resume | Discard session |
 
 ## Tuning Jump Detection
 
