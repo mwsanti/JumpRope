@@ -45,18 +45,14 @@ class MainDelegate extends Ui.BehaviorDelegate {
         var state = App.getApp().appState;
 
         if (key == Ui.KEY_ENTER) {
-            // START button: start / pause / resume
+            // START button: start or pause+menu
             if (state == Constants.STATE_IDLE) {
                 Sys.println("MainDelegate: START pressed — IDLE -> RECORDING");
                 _view.startRecording();
                 return true;
             } else if (state == Constants.STATE_RECORDING) {
-                Sys.println("MainDelegate: START pressed — RECORDING -> PAUSED");
-                _view.pauseRecording();
-                return true;
-            } else if (state == Constants.STATE_PAUSED) {
-                Sys.println("MainDelegate: START pressed — PAUSED -> RECORDING");
-                _view.resumeRecording();
+                Sys.println("MainDelegate: START pressed — RECORDING -> PAUSE MENU");
+                _view.pauseAndShowMenu();
                 return true;
             }
             return false;

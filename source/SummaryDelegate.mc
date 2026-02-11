@@ -2,10 +2,10 @@
 // SummaryDelegate.mc — Input delegate for the post-workout summary screen
 // Target: Garmin Forerunner 235 (Connect IQ 1.3)
 // Author: JumpRope Team
-// Version: 1.0.0
+// Version: 2.0.0
 //
-// Handles user input on the summary screen. START button saves the FIT
-// session; BACK button discards it. Both return the user to the main view.
+// Handles user input on the paginated summary screen.
+// UP/DOWN cycle through stat pages. START saves, BACK discards.
 // ==========================================================================
 
 using Toybox.WatchUi as Ui;
@@ -18,34 +18,57 @@ class SummaryDelegate extends Ui.BehaviorDelegate {
     // Reference to the SessionManager for save/discard operations
     var _sessionManager;
 
-    // Stores the SessionManager reference for session lifecycle control.
-    function initialize(sessionManager) {
+    // Reference to the SummaryView for page navigation
+    var _summaryView;
+
+    function initialize(sessionManager, summaryView) {
         BehaviorDelegate.initialize();
         _sessionManager = sessionManager;
+        _summaryView = summaryView;
     }
 
     // Handles physical key presses.
-    // KEY_ENTER (START) saves the session; KEY_ESC (BACK) discards it.
+    // KEY_ENTER (START) saves the session; KEY_ESC (BACK) discards.
+    // KEY_UP / KEY_DOWN cycle pages.
     function onKey(keyEvent) {
         var key = keyEvent.getKey();
 
         if (key == Ui.KEY_ENTER) {
-            // SAVE the workout session
             _saveAndExit();
             return true;
         }
 
         if (key == Ui.KEY_ESC) {
-            // DISCARD the workout session
             _discardAndExit();
+            return true;
+        }
+
+        if (key == Ui.KEY_UP) {
+            _summaryView.prevPage();
+            return true;
+        }
+
+        if (key == Ui.KEY_DOWN) {
+            _summaryView.nextPage();
             return true;
         }
 
         return false;
     }
 
-    // Handles the behavior delegate back action (swipe or BACK button).
-    // Discards the session and returns to the main view.
+    // Behavior delegate: next page on DOWN/swipe-up
+    function onNextPage() {
+        _summaryView.nextPage();
+        return true;
+    }
+
+    // Behavior delegate: previous page on UP/swipe-down
+    function onPreviousPage() {
+        _summaryView.prevPage();
+        return true;
+    }
+
+    // Behavior delegate: back action discards
     function onBack() {
         _discardAndExit();
         return true;
@@ -57,7 +80,7 @@ class SummaryDelegate extends Ui.BehaviorDelegate {
         _sessionManager.saveSession();
         Sys.println("SummaryDelegate: Session saved");
 
-        // Haptic feedback — Attention may not be available on all devices
+        // Haptic feedback
         try {
             Attention.vibrate([new Attention.VibeProfile(50, 200)]);
         } catch (e) {

@@ -16,12 +16,14 @@
         version="1.0.0">
 
         <iq:products>
-            <iq:product id="forerunner235" />
+            <iq:product id="fr235" />
         </iq:products>
 
         <iq:permissions>
             <iq:uses-permission id="Sensor" />
             <iq:uses-permission id="FitContributor" />
+            <iq:uses-permission id="UserProfile" />
+            <iq:uses-permission id="Fit" />
         </iq:permissions>
 
         <iq:languages>

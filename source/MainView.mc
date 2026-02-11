@@ -168,7 +168,7 @@ class MainView extends Ui.View {
         var statusLabel = findDrawableById("StatusLabel");
         if (statusLabel != null) {
             if (_appState == Constants.STATE_RECORDING) {
-                statusLabel.setText("RECORDING");
+                statusLabel.setText("JUMPING");
                 statusLabel.setColor(Constants.COLOR_RECORDING);
             } else if (_appState == Constants.STATE_PAUSED) {
                 statusLabel.setText("PAUSED");
@@ -342,6 +342,22 @@ class MainView extends Ui.View {
     }
 
     // ----------------------------------------------------------------------
+    // pauseAndShowMenu -- Pause and show the pause menu screen
+    //
+    // Pauses jump detection and FIT recording, then pushes the
+    // PauseMenuView with Resume/Save/Discard options.
+    // ----------------------------------------------------------------------
+    function pauseAndShowMenu() {
+        pauseRecording();
+        var menuView = new PauseMenuView();
+        Ui.pushView(
+            menuView,
+            new PauseMenuDelegate(menuView, self),
+            Ui.SLIDE_LEFT
+        );
+    }
+
+    // ----------------------------------------------------------------------
     // stopAndShowSummary -- End session and show summary screen
     //
     // Stops jump detection and FIT recording, transitions to SUMMARY
@@ -352,11 +368,28 @@ class MainView extends Ui.View {
         _sessionManager.stopSession();
         _appState = Constants.STATE_SUMMARY;
         App.getApp().appState = Constants.STATE_SUMMARY;
+        var summaryView = new SummaryView(_sessionManager);
         Ui.pushView(
-            new SummaryView(_sessionManager),
-            new SummaryDelegate(_sessionManager),
+            summaryView,
+            new SummaryDelegate(_sessionManager, summaryView),
             Ui.SLIDE_LEFT
         );
+    }
+
+    // ----------------------------------------------------------------------
+    // discardAndReset -- Discard session data and return to idle screen
+    //
+    // Discards the FIT session, resets the jump detector, and
+    // transitions back to IDLE state.
+    // ----------------------------------------------------------------------
+    function discardAndReset() {
+        _jumpDetector.stop();
+        _jumpDetector.reset();
+        _sessionManager.discardSession();
+        _countdownExpired = false;
+        _appState = Constants.STATE_IDLE;
+        App.getApp().appState = Constants.STATE_IDLE;
+        Ui.requestUpdate();
     }
 
     // ----------------------------------------------------------------------

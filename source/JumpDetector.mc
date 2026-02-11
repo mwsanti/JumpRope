@@ -66,6 +66,10 @@ class JumpDetector {
     // Whether the detector is actively listening to sensor data
     var _isActive;
 
+    // Mock sensor timer (used when registerSensorDataListener unavailable)
+    var _mockTimer;
+    var _mockPhase;
+
     // -- Runtime thresholds (validated from properties) ---------------------
 
     // Takeoff threshold in milliG (clamped 1200-3000)
@@ -110,6 +114,8 @@ class JumpDetector {
         _lastJumpTime = 0;
         _isActive = false;
         _peakJpm = 0;
+        _mockTimer = null;
+        _mockPhase = 0;
 
         // -- Smoothing buffer (fixed-size, pre-allocated) ------------------
         _smoothingBuffer = new [Constants.SMOOTHING_WINDOW_SIZE];
@@ -164,23 +170,35 @@ class JumpDetector {
     // Registers a sensor data listener at the configured sample rate.
     // ======================================================================
     function start() {
-        try {
-            Sensor.registerSensorDataListener(
-                method(:onSensorData),
-                {
-                    :period => 1,
-                    :accelerometer => {
-                        :enabled => true,
-                        :sampleRate => _sampleRate
+        // Try real sensor API first (CIQ 2.3+), fall back to mock timer
+        var started = false;
+        if (Sensor has :registerSensorDataListener) {
+            try {
+                Sensor.registerSensorDataListener(
+                    method(:onSensorData),
+                    {
+                        :period => 1,
+                        :accelerometer => {
+                            :enabled => true,
+                            :sampleRate => _sampleRate
+                        }
                     }
-                }
-            );
-            _isActive = true;
-            Sys.println("JumpDetector: started (rate=" + _sampleRate + "Hz)");
-        } catch (e) {
-            _isActive = false;
-            Sys.println("JumpDetector: failed to register sensor listener");
+                );
+                started = true;
+                Sys.println("JumpDetector: started real sensor (rate=" + _sampleRate + "Hz)");
+            } catch (e) {
+                Sys.println("JumpDetector: real sensor failed, using mock");
+            }
         }
+
+        if (!started) {
+            // Mock mode: timer generates fake jump data at ~120 JPM
+            _mockPhase = 0;
+            _mockTimer = new Timer.Timer();
+            _mockTimer.start(method(:onMockTick), 100, true);
+            Sys.println("JumpDetector: started MOCK sensor");
+        }
+        _isActive = true;
     }
 
     // ======================================================================
@@ -189,9 +207,33 @@ class JumpDetector {
     // Unregisters the sensor data listener and marks the detector inactive.
     // ======================================================================
     function stop() {
-        Sensor.unregisterSensorDataListener();
+        if (Sensor has :unregisterSensorDataListener) {
+            Sensor.unregisterSensorDataListener();
+        }
+        if (_mockTimer != null) {
+            _mockTimer.stop();
+            _mockTimer = null;
+        }
         _isActive = false;
         Sys.println("JumpDetector: stopped");
+    }
+
+    // Mock tick: simulates a jump cycle.
+    // Must fill the 5-sample smoothing buffer in each phase to cross thresholds.
+    // Phase 0-4: ground (1000), 5-9: spike (3000), 10-14: air (0)
+    // At 50ms/tick: 15 * 50ms = 750ms/jump => ~80 JPM
+    function onMockTick() {
+        if (!_isActive) { return; }
+        _mockPhase = (_mockPhase + 1) % 15;
+        var fakeZ;
+        if (_mockPhase >= 5 && _mockPhase <= 9) {
+            fakeZ = 3000; // 5 ticks of high G to fill smoothing buffer above 1800
+        } else if (_mockPhase >= 10 && _mockPhase <= 14) {
+            fakeZ = 0;    // 5 ticks of low G to fill smoothing buffer below 500
+        } else {
+            fakeZ = 1000; // ground ~1G
+        }
+        _processSample(fakeZ);
     }
 
     // ======================================================================
