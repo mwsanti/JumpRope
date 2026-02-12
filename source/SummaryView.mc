@@ -70,11 +70,9 @@ class SummaryView extends Ui.View {
         dc.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);
         dc.drawText(w / 2, 8, Gfx.FONT_SMALL, title, Gfx.TEXT_JUSTIFY_CENTER);
 
-        // Draw button hints on right edge, aligned with physical buttons
-        // START button = upper-right (2 o'clock), BACK button = lower-right (4 o'clock)
+        // Button hint: Back exits to main screen
         dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
-        dc.drawText(w - 8, 40, Gfx.FONT_XTINY, "Save", Gfx.TEXT_JUSTIFY_RIGHT);
-        dc.drawText(w - 8, 132, Gfx.FONT_XTINY, "Discard", Gfx.TEXT_JUSTIFY_RIGHT);
+        dc.drawText(w - 8, 132, Gfx.FONT_XTINY, "Back", Gfx.TEXT_JUSTIFY_RIGHT);
 
         // Draw stats for current page (centered, between the button hints)
         if (_currentPage == 0) {

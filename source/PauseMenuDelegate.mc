@@ -42,10 +42,10 @@ class PauseMenuDelegate extends Ui.BehaviorDelegate {
                 Ui.popView(Ui.SLIDE_RIGHT);
                 _mainView.resumeRecording();
             } else if (index == 1) {
-                // Save — pop pause menu, then stop and show summary
+                // Save — save session immediately, then show read-only summary
                 Sys.println("PauseMenu: Save selected");
                 Ui.popView(Ui.SLIDE_RIGHT);
-                _mainView.stopAndShowSummary();
+                _mainView.saveAndShowSummary();
             } else if (index == 2) {
                 // Discard — pop pause menu, discard data, reset to idle
                 Sys.println("PauseMenu: Discard selected");

@@ -23,21 +23,23 @@ module Constants {
     // Takeoff threshold in milliG. When smoothed Z-axis acceleration
     // exceeds this value (>1.8G), a takeoff is detected. The push-off
     // force during a jump creates an acceleration spike well above 1G.
-    const JUMP_THRESHOLD = 1800;
+    const JUMP_THRESHOLD = 1050;
 
-    // Landing threshold in milliG. When smoothed Z-axis acceleration
-    // drops below this value (<0.5G), a landing is detected. During the
-    // descent phase of a jump, the wrist experiences reduced acceleration.
-    const LANDING_THRESHOLD = 500;
+    // Landing threshold in milliG (unused with Sensor.Info approach, kept for reference)
+    const LANDING_THRESHOLD = 800;
 
-    // Minimum milliseconds between detected jumps. Prevents double-counting
-    // from sensor noise or bounce. Caps detection at ~400 jumps per minute.
-    const DEBOUNCE_MS = 150;
+    // Minimum milliseconds between detected jumps. Set low since
+    // Sensor.Info fires at ~1Hz (samples are ~1000ms apart).
+    const DEBOUNCE_MS = 50;
 
-    // Number of samples in the rolling average buffer for accelerometer
-    // smoothing. Reduces noise while maintaining responsiveness. At 25Hz
-    // sample rate, 5 samples = 200ms window.
-    const SMOOTHING_WINDOW_SIZE = 5;
+    // Smoothing window size. Set to 1 (no smoothing) because at ~1Hz
+    // sample rate, smoothing causes unacceptable lag.
+    const SMOOTHING_WINDOW_SIZE = 1;
+
+    // Estimated jumps per above-threshold sensor reading.
+    // At ~1Hz sample rate and ~120 JPM cadence (2 jumps/sec),
+    // each elevated reading represents ~2 actual jumps.
+    const JUMPS_PER_SAMPLE = 2;
 
     // Accelerometer polling rate in Hz. 25Hz is the maximum reliable
     // rate for the FR235's accelerometer via the Sensor API.

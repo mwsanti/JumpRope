@@ -8,13 +8,13 @@
 <properties>
 
     <!-- Takeoff detection threshold in milliG (>1.8G triggers airborne state) -->
-    <property id="jumpThreshold" type="number">1800</property>
+    <property id="jumpThreshold" type="number">1050</property>
 
-    <!-- Landing detection threshold in milliG (<0.5G triggers ground state) -->
-    <property id="landingThreshold" type="number">500</property>
+    <!-- Landing detection threshold in milliG (<0.8G triggers ground state) -->
+    <property id="landingThreshold" type="number">800</property>
 
     <!-- Minimum milliseconds between jump detections (prevents double-counting) -->
-    <property id="debounceMs" type="number">150</property>
+    <property id="debounceMs" type="number">0</property>
 
     <!-- Accelerometer polling rate in Hz -->
     <property id="sampleRate" type="number">25</property>

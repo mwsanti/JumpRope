@@ -34,12 +34,12 @@ class SummaryDelegate extends Ui.BehaviorDelegate {
         var key = keyEvent.getKey();
 
         if (key == Ui.KEY_ENTER) {
-            _saveAndExit();
+            _exitToIdle();
             return true;
         }
 
         if (key == Ui.KEY_ESC) {
-            _discardAndExit();
+            _exitToIdle();
             return true;
         }
 
@@ -68,37 +68,16 @@ class SummaryDelegate extends Ui.BehaviorDelegate {
         return true;
     }
 
-    // Behavior delegate: back action discards
+    // Behavior delegate: back action exits
     function onBack() {
-        _discardAndExit();
+        _exitToIdle();
         return true;
     }
 
-    // Saves the FIT session, provides haptic feedback, pops the view,
-    // and resets the app state to idle.
-    hidden function _saveAndExit() {
-        _sessionManager.saveSession();
-        Sys.println("SummaryDelegate: Session saved");
-
-        // Haptic feedback
-        try {
-            Attention.vibrate([new Attention.VibeProfile(50, 200)]);
-        } catch (e) {
-            // Attention not available, skip vibration
-        }
-
-        // Reset state BEFORE popView so MainView.onShow() sees STATE_IDLE
-        App.getApp().appState = Constants.STATE_IDLE;
-        Ui.popView(Ui.SLIDE_RIGHT);
-    }
-
-    // Discards the FIT session, pops the view, and resets the app
-    // state to idle.
-    hidden function _discardAndExit() {
-        _sessionManager.discardSession();
-        Sys.println("SummaryDelegate: Session discarded");
-
-        // Reset state BEFORE popView so MainView.onShow() sees STATE_IDLE
+    // Exit summary back to idle screen. Session is already saved
+    // from the pause menu, so just pop the view.
+    hidden function _exitToIdle() {
+        Sys.println("SummaryDelegate: Exiting to idle");
         App.getApp().appState = Constants.STATE_IDLE;
         Ui.popView(Ui.SLIDE_RIGHT);
     }

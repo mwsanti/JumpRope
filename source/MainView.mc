@@ -114,7 +114,9 @@ class MainView extends Ui.View {
         // this view was hidden, e.g. after returning from SummaryView)
         _appState = App.getApp().appState;
 
-        // Enable heart rate sensor
+        // Enable HR sensor and register sensor events callback.
+        // This callback provides both HR and accelerometer data via Sensor.Info.
+        // (registerSensorDataListener is NOT available on FR235)
         Sensor.setEnabledSensors([Sensor.SENSOR_HEARTRATE]);
         Sensor.enableSensorEvents(method(:onSensorInfo));
 
@@ -252,10 +254,24 @@ class MainView extends Ui.View {
     // @param sensorInfo [Sensor.Info] Sensor data (may be null)
     // ======================================================================
     function onSensorInfo(sensorInfo) {
-        if (sensorInfo != null && sensorInfo.heartRate != null) {
+        if (sensorInfo == null) {
+            return;
+        }
+
+        // Read heart rate
+        if (sensorInfo.heartRate != null) {
             _currentHR = sensorInfo.heartRate;
         } else {
             _currentHR = null;
+        }
+
+        // Read accelerometer data if available (Sensor.Info.accel)
+        // accel is a 3-element array [x, y, z] in milli-g
+        if (sensorInfo has :accel && sensorInfo.accel != null) {
+            var accel = sensorInfo.accel;
+            if (accel instanceof Lang.Array && accel.size() >= 3) {
+                _jumpDetector.processReading(accel[0], accel[1], accel[2]);
+            }
         }
     }
 
@@ -366,6 +382,26 @@ class MainView extends Ui.View {
     function stopAndShowSummary() {
         _jumpDetector.stop();
         _sessionManager.stopSession();
+        _appState = Constants.STATE_SUMMARY;
+        App.getApp().appState = Constants.STATE_SUMMARY;
+        var summaryView = new SummaryView(_sessionManager);
+        Ui.pushView(
+            summaryView,
+            new SummaryDelegate(_sessionManager, summaryView),
+            Ui.SLIDE_LEFT
+        );
+    }
+
+    // ----------------------------------------------------------------------
+    // saveAndShowSummary -- Save session immediately, then show read-only summary
+    //
+    // Called from pause menu "Save". Saves the FIT session first, then
+    // shows summary as view-only (no save/discard needed).
+    // ----------------------------------------------------------------------
+    function saveAndShowSummary() {
+        _jumpDetector.stop();
+        _sessionManager.stopSession();
+        _sessionManager.saveSession();
         _appState = Constants.STATE_SUMMARY;
         App.getApp().appState = Constants.STATE_SUMMARY;
         var summaryView = new SummaryView(_sessionManager);
