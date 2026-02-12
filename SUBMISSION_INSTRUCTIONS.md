@@ -44,24 +44,24 @@ Track jump rope workouts with automatic jump counting
 
 **Full Description** (copy from below):
 ```
-Transform your Garmin watch into a dedicated jump rope tracker! JumpRope automatically counts your jumps using the built-in accelerometer, so you can focus on your workout without manual counting.
+Transform your Garmin watch into a dedicated jump rope tracker! Jumpr automatically counts your jumps using the built-in accelerometer, so you can focus on your workout without manual counting.
 
-🎯 Key Features:
-• Automatic jump detection - no manual counting needed
-• Real-time jump count display
-• Jumps per minute (JPM) tracking
-• Heart rate monitoring during workout
-• Elapsed time or countdown timer
-• Milestone vibration alerts (every 100 jumps)
-• Complete workout summaries with stats
-• Saves workouts to Garmin Connect
+Key Features:
+- Automatic jump detection - no manual counting needed
+- Real-time jump count display
+- Jumps per minute (JPM) tracking
+- Heart rate monitoring during workout
+- Elapsed time or countdown timer
+- Milestone vibration alerts (every 100 jumps)
+- Complete workout summaries with stats
+- Saves workouts to Garmin Connect
 
 Perfect for:
-✓ Jump rope training and conditioning
-✓ Cardio workouts
-✓ CrossFit and HIIT sessions
-✓ Boxing/MMA training
-✓ Fitness challenges
+- Jump rope training and conditioning
+- Cardio workouts
+- CrossFit and HIIT sessions
+- Boxing/MMA training
+- Fitness challenges
 
 How It Works:
 1. Press START to begin your workout
@@ -71,16 +71,16 @@ How It Works:
 5. Save your workout to review stats and sync to Garmin Connect
 
 What You'll See:
-• Large jump count (primary display)
-• Current jumps per minute (JPM)
-• Heart rate (BPM)
-• Elapsed timer or countdown
-• Summary screen with: Total Jumps, Duration, Avg/Peak JPM, Avg/Max HR, Calories
+- Large jump count (primary display)
+- Current jumps per minute (JPM)
+- Heart rate (BPM)
+- Elapsed timer or countdown
+- Summary screen with: Total Jumps, Duration, Avg/Peak JPM, Avg/Max HR, Calories
 
 Settings (configure in Garmin Connect Mobile):
-• Jump detection sensitivity
-• Milestone vibration interval
-• Countdown timer duration
+- Jump detection sensitivity
+- Milestone vibration interval
+- Countdown timer duration
 
 Start tracking your jump rope progress today!
 ```
