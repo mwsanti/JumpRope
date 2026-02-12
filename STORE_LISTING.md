@@ -1,7 +1,7 @@
-# JumpRope - Connect IQ Store Listing
+# Jumpr - Connect IQ Store Listing
 
 ## Store Submission Package
-- **File**: `bin/JumpRope.iq` (84KB)
+- **File**: `bin/Jumpr.iq` (84KB)
 - **Upload to**: https://apps.garmin.com/developer
 
 ---
@@ -9,7 +9,7 @@
 ## App Information
 
 ### App Name
-**JumpRope**
+**Jumpr**
 
 ### Category
 **Health & Fitness**

@@ -3,7 +3,7 @@
 ## ✅ Your App is Ready!
 
 The `.iq` package file has been generated and is ready to upload:
-- **File**: `bin/JumpRope.iq` (84KB)
+- **File**: `bin/Jumpr.iq` (84KB)
 - **Contains**: Binaries for all supported devices (currently: Forerunner 235)
 
 ---
@@ -21,7 +21,7 @@ Navigate to: https://apps.garmin.com/developer
 ### 3. Upload Your App
 - Click **"Manage My Apps"**
 - Click **"Upload New App"**
-- Click **"Choose File"** and select: `bin/JumpRope.iq`
+- Click **"Choose File"** and select: `bin/Jumpr.iq`
 - Click **"Upload"**
 
 The system will validate your .iq file. Once validated, you'll be able to add descriptions and screenshots.
@@ -31,7 +31,7 @@ The system will validate your .iq file. Once validated, you'll be able to add de
 ## 4. Fill Out App Information
 
 ### Basic Info
-- **App Name**: `JumpRope`
+- **App Name**: `Jumpr`
 - **Category**: `Health & Fitness`
 - **App Type**: `Watch App` (auto-detected from manifest)
 
@@ -178,7 +178,7 @@ jump rope, fitness, workout, cardio, training, activity tracker, heart rate, exe
 ### If Review Requests Changes:
 - Garmin will provide specific feedback
 - Make requested changes
-- Rebuild `.iq` file with: `monkeyc -e -o bin/JumpRope.iq -f monkey.jungle -y developer_key.der -w -l 0`
+- Rebuild `.iq` file with: `monkeyc -e -o bin/Jumpr.iq -f monkey.jungle -y developer_key.der -w -l 0`
 - Re-upload updated version
 
 ---
@@ -186,7 +186,7 @@ jump rope, fitness, workout, cardio, training, activity tracker, heart rate, exe
 ## Quick Reference
 
 **Files to Upload:**
-- ✅ `bin/JumpRope.iq` (app package - 84KB)
+- ✅ `bin/Jumpr.iq` (app package - 84KB)
 - ✅ 5 screenshots from `screenshots/` folder
 
 **Links:**

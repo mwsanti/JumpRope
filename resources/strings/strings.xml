@@ -8,7 +8,7 @@
 <strings>
 
     <!-- App identity -->
-    <string id="AppName">JumpRope</string>
+    <string id="AppName">Jumpr</string>
 
     <!-- Workout status labels -->
     <string id="Recording">RECORDING</string>
