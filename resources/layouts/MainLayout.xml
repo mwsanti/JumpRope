@@ -49,10 +49,10 @@
         color="Graphics.COLOR_WHITE"
         text="00:00" />
 
-    <!-- Jumps per minute — bottom left area -->
+    <!-- Jumps per minute — bottom left area (moved inward for semi-round) -->
     <label
         id="JPMLabel"
-        x="55"
+        x="75"
         y="140"
         font="Graphics.FONT_XTINY"
         justification="Graphics.TEXT_JUSTIFY_CENTER"
@@ -61,17 +61,17 @@
 
     <label
         id="JPMValue"
-        x="55"
+        x="75"
         y="155"
         font="Graphics.FONT_SMALL"
         justification="Graphics.TEXT_JUSTIFY_CENTER"
         color="Graphics.COLOR_WHITE"
         text="0" />
 
-    <!-- Heart rate — bottom right area -->
+    <!-- Heart rate — bottom right area (moved inward for semi-round) -->
     <label
         id="HRLabel"
-        x="160"
+        x="140"
         y="140"
         font="Graphics.FONT_XTINY"
         justification="Graphics.TEXT_JUSTIFY_CENTER"
@@ -80,7 +80,7 @@
 
     <label
         id="HRValue"
-        x="160"
+        x="140"
         y="155"
         font="Graphics.FONT_SMALL"
         justification="Graphics.TEXT_JUSTIFY_CENTER"
