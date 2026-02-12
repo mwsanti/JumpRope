@@ -16,6 +16,7 @@
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
+using Toybox.Attention as Attention;
 
 class MainDelegate extends Ui.BehaviorDelegate {
 
@@ -48,10 +49,23 @@ class MainDelegate extends Ui.BehaviorDelegate {
             // START button: start or pause+menu
             if (state == Constants.STATE_IDLE) {
                 Sys.println("MainDelegate: START pressed — IDLE -> RECORDING");
+                // Tone + vibrate on start
+                try {
+                    Attention.playTone(Attention.TONE_KEY);
+                    Attention.vibrate([new Attention.VibeProfile(50, 200)]);
+                } catch (e) {
+                    // Attention API may not be available
+                }
                 _view.startRecording();
                 return true;
             } else if (state == Constants.STATE_RECORDING) {
                 Sys.println("MainDelegate: START pressed — RECORDING -> PAUSE MENU");
+                // Tone only on pause
+                try {
+                    Attention.playTone(Attention.TONE_KEY);
+                } catch (e) {
+                    // Attention API may not be available
+                }
                 _view.pauseAndShowMenu();
                 return true;
             }

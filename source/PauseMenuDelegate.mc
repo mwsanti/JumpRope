@@ -9,6 +9,7 @@
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Application as App;
+using Toybox.Attention as Attention;
 
 class PauseMenuDelegate extends Ui.BehaviorDelegate {
 
@@ -44,6 +45,13 @@ class PauseMenuDelegate extends Ui.BehaviorDelegate {
             } else if (index == 1) {
                 // Save — save session immediately, then show read-only summary
                 Sys.println("PauseMenu: Save selected");
+                // Tone + vibrate on save
+                try {
+                    Attention.playTone(Attention.TONE_KEY);
+                    Attention.vibrate([new Attention.VibeProfile(50, 200)]);
+                } catch (e) {
+                    // Attention API may not be available
+                }
                 Ui.popView(Ui.SLIDE_RIGHT);
                 _mainView.saveAndShowSummary();
             } else if (index == 2) {
